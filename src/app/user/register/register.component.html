@@ -1,0 +1,240 @@
+<body class="hold-transition login-page" style="background-color: #0d1824;">
+  <!-- <div class="card card-outline card-primary">
+    <img src="https://image.freepik.com/free-vector/sign-concept-illustration_114360-125.jpg" class="img-responsive"  alt="Responsive image">
+  </div> -->
+
+  <div class="container">
+    <div class="row h-100 border border-dark" style="background-color: white; border-radius: 75px 20px 20px 75px">
+      <div class="col-md-6" *ngIf="!otpVerified">
+        <img src="../../../assets/img/signup.jpg" class="img-responsive" style="border-radius: 75px;margin-left: -8px;">
+      </div>
+
+      <div class="col-md-6" *ngIf="otpVerified">
+        <img src="../../../assets/img/otp.jpg" class="img-responsive" style="border-radius: 75px;margin-left: -8px;">
+      </div>
+      <!-- <div class="col-md-6 d-flex justify-content-center"> -->
+      <div class="login-box" style="width: 565px;" *ngIf="otpVerified">
+        <div class="card card-outline card primary"
+          style="height: 420px; width: 450px; margin-top: 100px; margin-left: 35px;">
+          <div class="card-header text-center">
+            <a href="/register" class="h1">Shoppiee</a>
+          </div>
+
+          <div class="card-body">
+            <p class="login-box-msg" style="color: black">Register for Shoppiee</p>
+
+            <form autocomplete="chrome-off">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter Mobile Number" [(ngModel)]="userData.mobile"
+                  name="mobile" #mobile="ngModel" autocomplete="chrome-off" required pattern="^[7-9][0-9]{9}$">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>
+
+              </div>
+              <div class="input-group mb-3">
+                <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)" class="text-center">
+                  <div *ngIf="mobile && mobile.errors&&mobile.errors['required']" style="color:red;">
+                    Please provide Mobile number.
+                  </div>
+                  <div *ngIf="mobile && mobile.errors&&mobile.errors['pattern']" style="color:red;">
+                    Invalid Mobile number.
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Enter OTP received to your Mobile"
+                  [(ngModel)]="userData.otp" name="otp" #otp="ngModel" autocomplete="chrome-off" required>
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="input-group mb-3">
+                <div *ngIf="otp.invalid && (otp.dirty || otp.touched)" class="text-center">
+                  <div *ngIf="otp && otp.errors&&otp.errors['required']" style="color:red;">
+                    OTP is required.
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="text-center mb-3 mt-3">
+                <button type="button" [disabled]="!userData.mobile || !userData.otp" class="btn btn-primary btn-block"
+                  (click)="checkOtp()">Sign Up</button>
+              </div>
+              <div class="d-flex align-items-center mb-3">
+                <span class="h4">Verifying OTP Please wait...</span>
+                <div class="spinner-border spinner-border-md ml-3 mb-2 text-info" role="status" aria-hidden="true"></div>
+              </div>
+
+              <!-- <div class="text-center mb-3">
+                <p  class="h5">Verifying OTP Please wait...</p>
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div> -->
+            </form>
+
+            <p class="mt-10" style="color: black;">Didn't get OTP ?
+              <a href="#">Resend</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+      <div class="register-box" style="width: 565px;" *ngIf="!otpVerified">
+        <div class="card card-outline" style="height: 510px; width: 450px; margin-top: 60px; margin-left: 35px;">
+          <div class="card-header card-center">
+            <a href="#" class="h1" style="margin-left: 120px; ">Shoppiee</a>
+          </div>
+          <div class="card-body">
+            <p class="login-box-msg">Register for Shoppiee</p>
+            <form>
+
+              <div class="input-group mb-3">
+                <input type="text" class="form-control border border-danger" placeholder="Full name">
+
+                <!-- [ngClass]="condition ? 'class1' : 'class2' " -->
+
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                  </div>
+                </div>&nbsp;
+
+                <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                  ngbTooltip="Full Name is required"></i>
+              </div>
+
+              <div class="input-group mb-3">
+                <input type="email" class="form-control" placeholder="Email">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-envelope"></span>
+                  </div>
+                </div>&nbsp;
+
+                <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                  ngbTooltip="Full Name is required"></i>
+              </div>
+
+              <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Password">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>&nbsp;
+
+                <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                  ngbTooltip="Full Name is required"></i>
+              </div>
+
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Address">
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-home"></span>
+                  </div>
+                </div>&nbsp;
+
+                <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                  ngbTooltip="Full Name is required"></i>
+              </div>
+              <div class="input-group mb-3">
+                <div class="row">
+                  <div class="col-md-4">
+                    <select id="continent" class="form-select border border-danger">
+                      <option value="Asia">Asia</option>
+                      <option value="Africa">Africa</option>
+                      <option value="America">America</option>
+                      <option value="Europ">Europ</option>
+                      <option value="Asia">Asia</option>
+                      <option value="Africa">Africa</option>
+                      <option value="America">America</option>
+                      <option value="Europ">Europ</option><option value="Asia">Asia</option>
+                      <option value="Africa">Africa</option>
+                      <option value="America">America</option>
+                      <option value="Europ">Europ</option>
+                    </select>
+                    <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                      ngbTooltip="Full Name is required"></i>
+
+                  </div>
+
+                  <div class="col-md-4">
+                    <select id="continent" class="form-select">
+                      <option value="Asia">Asia</option>
+                      <option value="Africa">Africa</option>
+                      <option value="America">America</option>
+                      <option value="Europ">Europ</option>
+                    </select>
+                    <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                      ngbTooltip="Full Name is required"></i>
+
+                  </div>
+
+                  <div class="col-md-4">
+                    <select id="continent" class="form-select">
+                      <option value="Asia">Asia</option>
+                      <option value="Africa">Africa</option>
+                      <option value="America">America</option>
+                      <option value="Europ">Europ</option>
+                    </select>
+                    <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                      ngbTooltip="Full Name is required"></i>
+
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-8">
+                  <div class="icheck-primary">
+                    <input type="checkbox" id="agreeTerms" name="terms" value="agree" [ngModel]="userData.terms" #tems="ngModel">
+                    <label for="agreeTerms">
+                      I agree to the <a href="#">terms</a>
+                    </label>&nbsp;
+                    <i class="fas fa-info-circle" style="color: red; cursor: pointer"
+                    ngbTooltip="Please Accept to the Terms."></i>
+                  </div>
+                </div>
+                <!-- /.col -->
+                <div class="col-4">
+                  <button type="submit" class="btn btn-primary btn-block" (click)="otpVerified=false">Register</button>
+                </div>
+                <!-- /.col -->
+              </div>
+            </form>
+            <p class="mt-1" style="color: black;">Already have account ?
+              <a href="/login">Login</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+<!-- <body class="hold-transition register-page"> -->
+<!-- <div class="container border border-primary">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+        <div class="col-md-6"> -->
+
+<!-- </div> -->
+<!-- </div>
+   </div> -->
+<!-- </body> -->

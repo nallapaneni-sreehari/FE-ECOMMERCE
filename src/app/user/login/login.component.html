@@ -1,0 +1,74 @@
+<body class="hold-transition login-page" style="background-color: #0d1824;">
+    <div class="container">
+      <div class="row h-100 border border-dark" style="background-color: white; border-radius: 75px 20px 20px 75px">
+        <div class="col-md-6">
+          <img src="../../../assets/img/login.jpg" class="img-responsive" style="border-radius: 75px;margin-left: -8px;">
+        </div>
+        <div class="login-box" style="width: 565px;">
+          <div class="card card-outline card primary" style="height: 490px; width: 450px; margin-top: 67px; margin-left: 35px;">
+              <div class="card-header text-center">
+                  <a href="#" class="h1">Shoppiee</a>
+              </div>
+              <div class="card-body">
+                  <p class="login-box-msg">Login to Shoppiee</p>
+                  <form autocomplete="chrome-off">
+                      <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="userData.username" name="username" #username="ngModel" autocomplete="chrome-off" required>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="input-group mb-3">
+                        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="text-center">
+                          <span *ngIf="username && username.errors&&username.errors['required']" style="color:red;">
+                              Username is required.
+                          </span>
+                        </div>
+                      </div>
+                      <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="userData.password" name="password" #password="ngModel" autocomplete="chrome-off" required>
+                        <div class="input-group-append">
+                          <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="input-group mb-3">
+                        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-center">
+                          <div *ngIf="password && password.errors&&password.errors['required']" style="color:red;">
+                              Password is required.
+                          </div>
+                        </div>
+                      </div>
+  
+                      <div class="row">
+                        <div class="col-8">
+                          <div class="icheck-primary">
+                            <input type="checkbox" id="remember" (change)="userData.remember=!userData.remember">
+                            <label for="remember">
+                              Remember Me
+                            </label>
+                          </div>
+                        </div>
+                        <!-- /.col -->
+                        <!-- /.col -->
+                      </div>
+                      <div class="text-center mb-3 mt-3">
+                        <button type="button" [disabled]="!userData.username || !userData.password" class="btn btn-primary btn-block" (click)="onLogin()">Sign In</button>
+                      </div>
+                    </form>
+                    <p class="mb-1">Forgot Password ?
+                        <a href="forgot-password.html">Reset Here</a>
+                      </p>
+                      <p class="mb-0"> Don't have account ?
+                        <a href="/register" class="text-center">Register Here</a>
+                      </p>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+</body>
